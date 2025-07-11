@@ -1,67 +1,75 @@
-<script type="importmap">
-  {
-    "imports": {
-      "@google/genai": "https://esm.sh/@google/genai@^0.7.0",
-      "marked": "https://esm.sh/marked@^15.0.7"
-    }
-  }
-</script>
-<title>Wooniepedia</title>
-<link rel="icon" href="/luni.png" type="image/png">
-<div id="preloader">
-  <div class="preloader-content">
-    <h1>Wooniepedia</h1>
-    <div class="spinner"></div>
-  </div>
-</div>
-
-
-<div class="theme-switcher">
-  <label class="switch">
-    <input type="checkbox" id="theme-toggle">
-    <span class="slider round"></span>
-  </label>
-</div>
-
-<div class="container">
-  <h1>Wooniepedia</h1>
-  <p>Learn anything with the help of tiny cats! Here are some examples:</p>
-  <ul id="examples">
-    <li>What is the meaning of life, explained by a kitten?</li>
-    <li>How do black holes work, but with cats?</li>
-    <li>Tell me a story about a brave cat astronaut.</li>
-  </ul>
-  <p>or enter your own prompt:</p>
-  <textarea id="input" placeholder="Enter some prompt and press Enter."></textarea>
-  <div id="output"></div>
-  <div id="error" hidden></div>
-  <div id="slideshow" hidden></div>
-</div>
-<link rel="stylesheet" href="/index.css">
-<script>
-    // Hide preloader after 3 seconds
-    setTimeout(() => {
-      const preloader = document.getElementById('preloader');
-      if (preloader) {
-        preloader.style.display = 'none';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="importmap">
+    {
+      "imports": {
+        "@google/genai": "https://esm.sh/@google/genai@^0.7.0",
+        "marked": "https://esm.sh/marked@^15.0.7"
       }
-    }, 3000);
+    }
   </script>
-  <script type="module" src="/index.tsx"></script>
+  <title>Wooniepedia</title>
+  <link rel="icon" href="/woonie.png?v=3" type="image/png">
+  <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <div id="preloader">
+    <div class="preloader-content">
+      <h1>Wooniepedia</h1>
+      <div class="spinner"></div>
+    </div>
+  </div>
 
-<script>
-  // Theme Switcher
-  const themeToggle = document.getElementById('theme-toggle');
-  const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-  document.documentElement.setAttribute('data-theme', currentTheme);
+  <div class="theme-switcher">
+    <label class="switch">
+      <input type="checkbox" id="theme-toggle">
+      <span class="slider round"></span>
+    </label>
+  </div>
 
-  if (currentTheme === 'dark') {
-    themeToggle.checked = true;
-  }
+  <div class="container">
+    <h1>Wooniepedia</h1>
+    <p>Learn anything with the help of tiny cats! Here are some examples:</p>
+    <ul id="examples">
+      <li>What is the meaning of life, explained by a kitten?</li>
+      <li>How do black holes work, but with cats?</li>
+      <li>Tell me a story about a brave cat astronaut.</li>
+    </ul>
+    <p>or enter your own prompt:</p>
+    <textarea id="input" placeholder="Enter some prompt and press Enter."></textarea>
+    <div id="output"></div>
+    <div id="error" hidden></div>
+    <div id="slideshow" hidden></div>
+  </div>
 
-  themeToggle.addEventListener('change', function() {
-    const theme = this.checked ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  });
-</script>
+  <script>
+      // Hide preloader after 3 seconds
+      setTimeout(() => {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+          preloader.style.display = 'none';
+        }
+      }, 3000);
+    </script>
+    <script type="module" src="/index.tsx"></script>
+
+  <script>
+    // Theme Switcher
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+    if (currentTheme === 'dark') {
+      themeToggle.checked = true;
+    }
+    themeToggle.addEventListener('change', function() {
+      const theme = this.checked ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    });
+  </script>
+</body>
+</html>
